@@ -57,7 +57,15 @@ public class QuoteController {
 		return getOne(nextLong(1, repository.count() + 1));
 	}
 
+	@GetMapping("/api/random/slow")
+	public QuoteResource getRandomOneSlow() throws Exception {
+		Thread.sleep(1000 * 10);
+		return getOne(nextLong(1, repository.count() + 1));
+	}
+
 	private long nextLong(long lowerRange, long upperRange) {
 		return (long) (RANDOMIZER.nextDouble() * (upperRange - lowerRange)) + lowerRange;
 	}
+
+
 }
